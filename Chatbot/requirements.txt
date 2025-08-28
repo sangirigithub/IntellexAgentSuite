@@ -1,0 +1,12 @@
+langgraph
+langgraph-cli[inmem]
+langchain
+langchain_community
+langchain_core
+langchain_groq
+langchain_huggingface
+sentence_transformers
+python-dotenv
+faiss-cpu
+streamlit
+tavily-python
