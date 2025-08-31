@@ -1,4 +1,5 @@
 import streamlit as st
+from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 
 class DisplayResponseUI:
     def __init__(self, use_case, graph, user_message):
@@ -11,8 +12,8 @@ class DisplayResponseUI:
         graph = self.graph
         user_message = self.user_message
 
-        if use_case == 'Chatbot Lite':            
-
+        if use_case == 'Chatbot Lite':   
+            # Prepare State and invoke the Graph
             try:
                 for event in graph.stream({'messages': ('user', user_message)}):                    
                     # print('event.values(): ', event.values())
@@ -25,5 +26,27 @@ class DisplayResponseUI:
                         with st.chat_message('assistant'):
                             st.write('Assistant:', value['messages'].content)                       
             except Exception as e:
-                st.error(f'Error Occured during Display {e}')             
+                st.error(f'Error Occured during Displaying {e}')             
+
+        elif use_case == 'ChatBot with Tools':  
+            # Prepare State and invoke the Graph
+            try:
+                initial_state = {'messages':[user_message]}
+                response = graph.invoke(initial_state)
+
+                for msg in response['messages']:
+                    if type(msg) == HumanMessage:
+                        with st.chat_message('user'):
+                            st.write(msg.content)
+                    elif type(msg) == ToolMessage:
+                        with st.chat_message('ai'):
+                            st.write('Tool Call Starts ... ')
+                            st.write(msg.content)
+                            st.write('Tool Call Ends ... ')
+                    elif type(msg) == AIMessage and msg.content:
+                        with st.chat_message('assistant'):
+                            st.write(msg.content)
+                                 
+            except Exception as e:
+                st.error(f'Error Occured during Displaying {e}')           
 

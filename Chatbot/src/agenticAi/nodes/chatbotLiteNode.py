@@ -1,9 +1,9 @@
 from src.agenticAi.state.agentState import State
 
 class ChatbotLiteNode:
-    """
+    '''
     Chatbot Lite - Implementation
-    """
+    '''
     def __init__(self, llm):
         self.llm = llm
 

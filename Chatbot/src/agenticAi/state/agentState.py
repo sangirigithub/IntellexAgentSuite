@@ -7,5 +7,5 @@ class State(TypedDict): ## State inherited from TypedDict
     Represent the structure of the state used in graph
     """
     messages: Annotated[List, add_messages]
-    
+    # Annotated List type, reducer used - add_messages
 
