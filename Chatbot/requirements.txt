@@ -1,11 +1,11 @@
 langgraph
 langgraph-cli[inmem]
 langchain
-langchain_community
-langchain_core
-langchain_groq
-langchain_huggingface
-sentence_transformers
+langchain-community
+langchain-core
+langchain-groq
+langchain-huggingface
+sentence-transformers
 python-dotenv
 faiss-cpu
 streamlit

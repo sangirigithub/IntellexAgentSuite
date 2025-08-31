@@ -1,0 +1,1 @@
+uiConfigini_path = r'./src/agenticAi/ui/uiConfig.ini'
