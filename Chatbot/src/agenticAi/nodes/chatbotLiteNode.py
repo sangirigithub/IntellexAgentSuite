@@ -16,7 +16,7 @@ class ChatbotLiteNode:
         
         ## Generate Model Response using LLM:
         llm_response = self.llm.invoke(state['messages'])
-        # print('Node --- ', llm_response)
+        # print('Node.py --- ', llm_response)
         
         return {'messages': llm_response}        
         # return {'messages': state["messages"] + [AIMessage(content=llm_response)]}

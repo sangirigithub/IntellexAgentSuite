@@ -26,7 +26,7 @@ class DisplayResponseUI:
                         with st.chat_message('assistant'):
                             st.write('Assistant:', value['messages'].content)                       
             except Exception as e:
-                st.error(f'Error Occured during Displaying {e}')             
+                st.error(f'display_response.py --- Error Occured during displaying {e}')             
 
         elif use_case == 'ChatBot with Tools':  
             # Prepare State and invoke the Graph
@@ -46,7 +46,27 @@ class DisplayResponseUI:
                     elif type(msg) == AIMessage and msg.content:
                         with st.chat_message('assistant'):
                             st.write(msg.content)
-                                 
             except Exception as e:
-                st.error(f'Error Occured during Displaying {e}')           
+                st.error(f'display_response.py --- Error Occured during displaying {e}') 
+
+        elif use_case == 'AI News':
+            frequency = self.user_message
+
+            with st.spinner('Fetching & Summarizing AI News... ⌛'):
+                response = graph.invoke({'messages':frequency})
+                try:
+                    # Read saved Markdown file
+                    AI_News_Path = f'./AiNews/{frequency.lower()}_summary.md'
+                    with open(AI_News_Path, 'r') as newsFile:
+                        markdown_content = newsFile.read()
+
+                    # Display the markdwn content in UI
+                    st.markdown(markdown_content, unsafe_allow_html=True)
+
+                except FileNotFoundError:
+                    st.error(f'display_response.py --- News Not Generated or File Not Found: {AI_News_Path}')    
+                except Exception as e:
+                    st.error(f'display_response.py --- An Error Occured: {str(e)}')    
+
+          
 

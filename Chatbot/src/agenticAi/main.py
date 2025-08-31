@@ -22,7 +22,11 @@ def load_agenticAi_app():
         st.error('main.py --- Error Failed to Load User Input from the UI. Please fill details on the UI.')
         return 
     
-    user_message = st.chat_input('Please Enter your Question!')
+    # Text Input for user_message
+    if st.session_state.IsFetchButtonClicked:
+        user_message = st.session_state.frequency
+    else:
+        user_message = st.chat_input('Please Enter your Question!')
 
     if user_message:
         try:

@@ -10,6 +10,8 @@ class LoadUI():
 
     def load_ui(self):
         st.set_page_config(page_title="🤖 " + str(self.config.get_page_title()), layout='wide')
+        st.session_state.frequency = ''
+        st.session_state.IsButtonFetchClicked = False
         # st.header("🤖 " + str(self.config.get_page_title()))
                 
         col1, col2 = st.columns([1, 16])
@@ -64,7 +66,7 @@ class LoadUI():
                     
                 ### 4. UseCase Selection
                 self.user_controls['selected_usecase'] = st.selectbox('Select UseCase', usecase_options)
-                if self.user_controls['selected_usecase'] == 'ChatBot with Tools':
+                if self.user_controls['selected_usecase'] == 'ChatBot with Tools' or self.user_controls['selected_usecase'] == 'AI News':
                    os.environ['TAVILY_API_KEY'] = self.user_controls['TAVILY_API_KEY'] = st.session_state['TAVILY_API_KEY'] = st.text_input('TAVILY API KEY', type='password')
 
                     ### 5. Tavily Web Search API Key/Create a New one
@@ -73,6 +75,16 @@ class LoadUI():
                             "<span style='font-size:10px; color:#F39C12;'>⚠️ Please Enter your Tavily API Key to Proceed.<br>Tavily - https://app.tavily.com/home</span>",
                             unsafe_allow_html=True 
                             ) 
+                   if  self.user_controls['selected_usecase'] == 'AI News':
+                       st.subheader('📝Ai News Explorer!')
+
+                       with st.sidebar:
+                                frequency = st.selectbox('🗓️Select Frequency',
+                                                            ['Daily', 'Weekly', 'Monthly'], index=0)
+                                
+                       if st.button('🔎Fetch Latest Ai News', use_container_width=True):
+                                st.session_state.IsFetchButtonClicked = True
+                                st.session_state.frequency = frequency
 
                 return self.user_controls
             
