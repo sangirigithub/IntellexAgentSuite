@@ -1,0 +1,11 @@
+langchain
+langgraph
+langchain_community
+langchain_core
+langchain_groq
+langchain-huggingface
+sentence-transformers
+fastapi
+uvicorn
+watchdog
+langgraph-cli[inmem]

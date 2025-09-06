@@ -5,9 +5,7 @@
 ## End-to-End Implementation of AgenticAi Solution using LangGraph, LangChain, RAG & multi-Agents for multiple use-cases.
 ## Udemy - Krish Naik - Complete AgenticAi Bootcamp with LangGraph & LangChain
 
-## 1. Chatbot Lite
-## 2. Chatbot with Tools
-## 3. AI News
+## Blog Generation
 
 # Icons Source - 'https://emojidb.org/all-emojis'
 
